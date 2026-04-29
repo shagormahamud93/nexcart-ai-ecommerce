@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* Tailwind v4 class-based dark mode strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+@layer base {
+  input,
+  textarea,
+  select {
+    color: rgb(17 24 39);
+    caret-color: rgb(79 70 229);
+  }
+
+  .dark input,
+  .dark textarea,
+  .dark select {
+    color: rgb(243 244 246);
+    caret-color: rgb(165 180 252);
+  }
+
+  .dark select option,
+  .dark select optgroup {
+    background-color: rgb(17 24 39);
+    color: rgb(243 244 246);
+  }
+
+  .dark select option:checked,
+  .dark select option:hover {
+    background-color: rgb(31 41 55);
+    color: rgb(243 244 246);
+  }
+
+  .dark select option:disabled {
+    color: rgb(107 114 128);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(156 163 175);
+    opacity: 1;
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: rgb(107 114 128);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgb(17 24 39);
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgb(243 244 246);
+    -webkit-box-shadow: 0 0 0 1000px #0a0a0a inset;
+  }
+}
