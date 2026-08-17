@@ -83,7 +83,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Product Images */}
@@ -135,7 +135,7 @@ export default function ProductDetailPage() {
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2 dark:text-gray-100">
                 {currentProduct.name}
               </h1>
               <div className="flex items-center mb-4">
@@ -151,18 +151,18 @@ export default function ProductDetailPage() {
                     />
                   ))}
                 </div>
-                <span className="text-sm text-gray-600 ml-2">
+                <span className="text-sm text-gray-600 ml-2 dark:text-gray-400">
                   {currentProduct.rating.toFixed(1)} ({currentProduct.reviewCount} reviews)
                 </span>
               </div>
-              <p className="text-2xl font-bold text-gray-900 mb-4">
+              <p className="text-2xl font-bold text-gray-900 mb-4 dark:text-gray-100">
                 ${currentProduct.price.toFixed(2)}
               </p>
-              <p className="text-gray-700 mb-4">{currentProduct.description}</p>
-              <p className="text-sm text-gray-600">
+              <p className="text-gray-700 mb-4 dark:text-gray-400">{currentProduct.description}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Category: <span className="font-medium">{currentProduct.category}</span>
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Stock: <span className="font-medium">{currentProduct.stock}</span>
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function ProductDetailPage() {
               </button>
               <button
                 onClick={handleAddToWishlist}
-                className="p-3 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="p-3 border border-gray-300 dark:border-gray-800 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <Heart className="w-5 h-5 text-gray-400" />
               </button>
@@ -190,32 +190,34 @@ export default function ProductDetailPage() {
         </div>
 
         {/* Reviews Section */}
-        <div className="mt-12 border-t border-gray-200 pt-10">
+        <div className="mt-12 border-t border-gray-200 pt-10 dark:border-gray-800">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <div className="flex items-baseline justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">Customer Reviews</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Customer Reviews</h2>
                 {summary && summary.totalReviews > 0 && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:bg-gray-950">
                     <StarRating value={Math.round(summary.averageRating)} readOnly size={18} />
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold text-gray-900 dark:text-gray-400">
                       {summary.averageRating.toFixed(1)}
                     </span>
-                    <span>({summary.totalReviews})</span>
+                    <span className="text-gray-500 dark:text-gray-400">
+                      ({summary.totalReviews})
+                    </span>
                   </div>
                 )}
               </div>
 
               <div className="mt-6 space-y-6">
                 {reviews.length === 0 ? (
-                  <p className="rounded-2xl border border-dashed border-gray-300 bg-white p-8 text-center text-sm text-gray-500">
+                  <p className="rounded-2xl border border-dashed border-gray-300 bg-white p-8 text-center text-sm text-gray-500 dark:bg-gray-950 dark:border-gray-800 dark:text-gray-400">
                     No reviews yet. Be the first to share your experience!
                   </p>
                 ) : (
                   reviews.map((review) => (
                     <div
                       key={review.id}
-                      className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+                      className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:bg-gray-950 dark:border-gray-800"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -223,17 +225,17 @@ export default function ProductDetailPage() {
                             {review.user.name.charAt(0).toUpperCase()}
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-400">
                               {review.user.name}
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
                               {new Date(review.createdAt).toLocaleDateString()}
                             </p>
                           </div>
                         </div>
                         <StarRating value={review.rating} readOnly size={16} />
                       </div>
-                      <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                      <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-400">
                         {review.comment}
                       </p>
                     </div>
