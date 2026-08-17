@@ -87,7 +87,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <Link
@@ -97,13 +97,13 @@ export default function CheckoutPage() {
             <ArrowLeft className="w-4 h-4 mr-2" />
             {t('checkout.backToCart')}
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">{t('checkout.title')}</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('checkout.title')}</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Order Summary */}
-          <div className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">{t('checkout.summary')}</h2>
+          <div className="bg-white shadow rounded-lg p-6 dark:bg-gray-900">
+            <h2 className="text-lg font-medium text-gray-900 mb-4 dark:text-white">{t('checkout.summary')}</h2>
 
             <div className="space-y-4">
               {items.map((item) => (
@@ -122,24 +122,24 @@ export default function CheckoutPage() {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
                       {item.product.name}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                       {t('checkout.qty')}: {item.quantity} × ${item.product.price.toFixed(2)}
                     </p>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-gray-900 dark:text-gray-400">
                     ${(item.product.price * item.quantity).toFixed(2)}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-gray-200 mt-4 pt-4">
+            <div className="border-t border-gray-200 dark:border-gray-800 mt-4 pt-4">
               <div className="flex justify-between items-center">
-                <span className="text-lg font-medium text-gray-900">{t('cart.total')}</span>
-                <span className="text-lg font-bold text-gray-900">
+                <span className="text-lg font-medium text-gray-900 dark:text-white">{t('cart.total')}</span>
+                <span className="text-lg font-bold text-gray-900 dark:text-gray-400">
                   ${total.toFixed(2)}
                 </span>
               </div>
@@ -147,80 +147,130 @@ export default function CheckoutPage() {
           </div>
 
           {/* Checkout Form */}
-          <div className="bg-white shadow rounded-lg p-6">
+          <div className="bg-white shadow rounded-lg p-6 dark:bg-gray-900 dark:shadow-black/30">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Shipping Address */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-4 dark:text-white">
                   {t('checkout.shippingAddress')}
                 </h3>
+
                 <div className="grid grid-cols-1 gap-4">
                   <div>
-                    <label htmlFor="street" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="street"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    >
                       {t('checkout.street')}
                     </label>
+
                     <input
                       type="text"
                       id="street"
                       required
                       value={shippingAddress.street}
-                      onChange={(e) => setShippingAddress(prev => ({ ...prev, street: e.target.value }))}
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                      onChange={(e) =>
+                        setShippingAddress((prev) => ({
+                          ...prev,
+                          street: e.target.value,
+                        }))
+                      }
+                      className="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 shadow-sm outline-none transition-colors placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
                     />
                   </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="city"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                      >
                         {t('checkout.city')}
                       </label>
+
                       <input
                         type="text"
                         id="city"
                         required
                         value={shippingAddress.city}
-                        onChange={(e) => setShippingAddress(prev => ({ ...prev, city: e.target.value }))}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        onChange={(e) =>
+                          setShippingAddress((prev) => ({
+                            ...prev,
+                            city: e.target.value,
+                          }))
+                        }
+                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 shadow-sm outline-none transition-colors placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
                       />
                     </div>
+
                     <div>
-                      <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="state"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                      >
                         {t('checkout.state')}
                       </label>
+
                       <input
                         type="text"
                         id="state"
                         required
                         value={shippingAddress.state}
-                        onChange={(e) => setShippingAddress(prev => ({ ...prev, state: e.target.value }))}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        onChange={(e) =>
+                          setShippingAddress((prev) => ({
+                            ...prev,
+                            state: e.target.value,
+                          }))
+                        }
+                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 shadow-sm outline-none transition-colors placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
                       />
                     </div>
                   </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="zip"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                      >
                         {t('checkout.zip')}
                       </label>
+
                       <input
                         type="text"
                         id="zip"
                         required
                         value={shippingAddress.zip}
-                        onChange={(e) => setShippingAddress(prev => ({ ...prev, zip: e.target.value }))}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        onChange={(e) =>
+                          setShippingAddress((prev) => ({
+                            ...prev,
+                            zip: e.target.value,
+                          }))
+                        }
+                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 shadow-sm outline-none transition-colors placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
                       />
                     </div>
+
                     <div>
-                      <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="country"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                      >
                         {t('checkout.country')}
                       </label>
+
                       <input
                         type="text"
                         id="country"
                         required
                         value={shippingAddress.country}
-                        onChange={(e) => setShippingAddress(prev => ({ ...prev, country: e.target.value }))}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        onChange={(e) =>
+                          setShippingAddress((prev) => ({
+                            ...prev,
+                            country: e.target.value,
+                          }))
+                        }
+                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 shadow-sm outline-none transition-colors placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
                       />
                     </div>
                   </div>
@@ -229,15 +279,22 @@ export default function CheckoutPage() {
 
               {/* Payment Method */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-4 dark:text-white">
                   {t('checkout.paymentMethod')}
                 </h3>
-                <div className="bg-gray-50 p-4 rounded-md">
+
+                <div className="bg-gray-50 p-4 rounded-md dark:bg-gray-800 dark:border dark:border-gray-700">
                   <div className="flex items-center">
-                    <CreditCard className="w-5 h-5 text-indigo-600 mr-3" />
+                    <CreditCard className="w-5 h-5 text-indigo-600 dark:text-indigo-400 mr-3" />
+
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{t('checkout.payment.title')}</p>
-                      <p className="text-sm text-gray-600">{t('checkout.payment.desc')}</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        {t('checkout.payment.title')}
+                      </p>
+
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {t('checkout.payment.desc')}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -248,7 +305,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isProcessing ? (
                     <>
