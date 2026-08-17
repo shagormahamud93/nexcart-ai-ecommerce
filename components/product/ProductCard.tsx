@@ -53,8 +53,9 @@ export function ProductCard({ product }: ProductCardProps) {
       : null;
 
   return (
-    <Link href={`/product/${product.id}`} className="group">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow dark:bg-gray-900 dark:border-gray-800 dark:shadow-black/30 dark:hover:shadow-black/50">
+    <Link href={`/product/${product.id}`} className="group h-full">
+      <div className="h-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow dark:bg-gray-900 dark:border-gray-800 dark:shadow-black/30 dark:hover:shadow-black/50">
+
         <div className="relative h-48 bg-gray-200 dark:bg-gray-800">
           {product.images[0] ? (
             <Image
@@ -74,46 +75,53 @@ export function ProductCard({ product }: ProductCardProps) {
               {badges.isOutOfStock && (
                 <BadgeChip label="Out of stock" className={BADGE_STYLES.out} />
               )}
+
               {badges.isDiscount && (
                 <BadgeChip
                   label={discountPct ? `-${discountPct}%` : 'Sale'}
                   className={BADGE_STYLES.discount}
                 />
               )}
+
               {badges.isNew && !badges.isOutOfStock && (
                 <BadgeChip label="New" className={BADGE_STYLES.new} />
               )}
+
               {badges.isHot && !badges.isOutOfStock && (
                 <BadgeChip label="Hot" className={BADGE_STYLES.hot} />
               )}
             </div>
           )}
         </div>
-        <div className="p-4">
+
+        <div className="p-4 min-h-[180px] flex flex-col">
           <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 dark:text-white">
             {product.name}
           </h3>
+
           <div className="flex items-center mb-2">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(product.rating)
+                  className={`w-4 h-4 ${i < Math.floor(product.rating)
                       ? 'text-yellow-400 fill-current'
                       : 'text-gray-300 dark:text-gray-600'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
+
             <span className="text-sm text-gray-600 ml-2 dark:text-gray-400">
               ({product.reviewCount})
             </span>
           </div>
-          <div className="flex items-baseline gap-2">
+
+          <div className="flex items-baseline gap-2 mt-auto">
             <p className="text-xl font-bold text-gray-900 dark:text-white">
               ${product.price.toFixed(2)}
             </p>
+
             {product.oldPrice && product.oldPrice > product.price && (
               <p className="text-sm text-gray-400 line-through dark:text-gray-500">
                 ${product.oldPrice.toFixed(2)}
