@@ -52,7 +52,7 @@ export function CartItemComponent({ item }: CartItemProps) {
   const subtotal = item.product.price * item.quantity;
 
   return (
-    <div className="flex items-center space-x-4 py-4 border-b border-gray-200 dark:border-gray-800">
+    <div className="flex items-center space-x-4 py-4 border-b border-gray-200 dark:border-gray-800 px-6">
       <div className="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-md overflow-hidden dark:bg-gray-800">
         {item.product.images[0] ? (
           <Image
