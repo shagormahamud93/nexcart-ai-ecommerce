@@ -100,7 +100,7 @@ export function ReviewForm({ productId, onSubmitted }: ReviewFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
       >
         {isSubmitting ? 'Submitting…' : 'Submit review'}
       </button>

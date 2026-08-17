@@ -67,7 +67,7 @@ export function FacebookShareButton({
       title={label}
       className={
         className ??
-        'inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-[#1877F2] px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-[#166FE0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1877F2] disabled:opacity-60'
+        'inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-[#1877F2] px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-[#166FE0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1877F2] disabled:opacity-60 cursor-pointer'
       }
     >
       <svg
